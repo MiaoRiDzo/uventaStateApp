@@ -1,0 +1,20 @@
+﻿<Page x:Class="uventaStateApp.Resorces.Pages.ProviderPages.ProviderPage.ProviderEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:uventaStateApp.Resorces.Pages.ProviderPages.ProviderPage"
+      mc:Ignorable="d"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="475" d:DesignWidth="890"
+      Title="ProviderEditPage">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock x:Name="tbHeader" Text="Добавление" FontSize="24" FontWeight="Bold"/>
+        <TextBox x:Name="tbName" materialDesign:HintAssist.Hint="Наименование*" Margin="14" Width="240" FontSize="16" Text="{Binding ServiceProviderName}"/>
+        <TextBox x:Name="tbPhone" materialDesign:HintAssist.Hint="Номер телефона*" Margin="14" Width="240" FontSize="16" Text="{Binding PhoneNumber}"/>
+        <TextBox x:Name="tbINN" materialDesign:HintAssist.Hint="ИНН"  Margin="14" Width="240" FontSize="16" UndoLimit="500" Text="{Binding INN}"/>
+        <TextBox x:Name="tbEmail" materialDesign:HintAssist.Hint="E@Mail"  Margin="14" Width="240" FontSize="16" UndoLimit="500" Text="{Binding EMail}"/>
+        <Button x:Name="btnSave" Content="Сохранить" Margin="14" HorizontalAlignment="Right" Click="btnSave_Click"/>
+    </StackPanel>
+</Page>

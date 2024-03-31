@@ -1,0 +1,24 @@
+﻿<Window x:Class="uventaStateApp.Wins.AppealAbout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:uventaStateApp.Wins"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Подробности" Height="567" Width="555">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Информация о обращении" FontSize="24" FontWeight="Bold" Margin="5"/>
+        <TextBlock Text="Наименование организации:" FontSize="18" Margin="5"/>
+        <TextBlock Text="{Binding ServiceProvider.ServiceProviderName}" FontSize="18" Margin="5"/>
+        <TextBlock Text="Адрес здания" FontSize="18" Margin="5"/>
+        <TextBlock Text="{Binding Premises.Build.BuildAdress}" FontSize="18" Margin="5"/>
+        <TextBlock Text="Наименование помещения:" FontSize="18" Margin="5"/>
+        <TextBlock Text="{Binding Premises.PremisesName}" FontSize="18" Margin="5"/>
+        <TextBlock Text="Текст обращения:" FontSize="18" Margin="5"/>
+        <TextBlock Text="{Binding AppealMessage}" FontSize="18" Margin="5" Height="100"/>
+        <ComboBox x:Name="cbStatus" SelectionChanged="cbStatus_SelectionChanged" DisplayMemberPath="StatusName" 
+                  SelectedItem="{Binding Status}" materialDesign:HintAssist.Hint="Статус*" 
+                  Margin="14" Width="300" FontSize="16"/>
+    </StackPanel> 
+</Window>

@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище stateUventaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appeal">
+          <Key>
+            <PropertyRef Name="ID_Appeal" />
+          </Key>
+          <Property Name="ID_Appeal" Type="int" Nullable="false" />
+          <Property Name="ID_Premises" Type="int" />
+          <Property Name="ID_ServiceProvider" Type="int" Nullable="false" />
+          <Property Name="ID_Status" Type="int" Nullable="false" />
+          <Property Name="AppealMessage" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Build">
+          <Key>
+            <PropertyRef Name="ID_Build" />
+          </Key>
+          <Property Name="ID_Build" Type="int" Nullable="false" />
+          <Property Name="Floors" Type="int" />
+          <Property Name="BuildAdress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Premises">
+          <Key>
+            <PropertyRef Name="ID_Premises" />
+          </Key>
+          <Property Name="ID_Premises" Type="int" Nullable="false" />
+          <Property Name="ID_State" Type="int" Nullable="false" />
+          <Property Name="ID_Build" Type="int" Nullable="false" />
+          <Property Name="PremisesName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PremisesDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="PremisesArea" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceProvider">
+          <Key>
+            <PropertyRef Name="ID_ServiceProvider" />
+          </Key>
+          <Property Name="ID_ServiceProvider" Type="int" Nullable="false" />
+          <Property Name="ServiceProviderName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="INN" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="ID_State" />
+          </Key>
+          <Property Name="ID_State" Type="int" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="int" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="int" Nullable="false" />
+          <Property Name="ID_Role" Type="int" Nullable="false" />
+          <Property Name="ID_ServiceProvider" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="char" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Appeal_Premises">
+          <End Role="Premises" Type="Self.Premises" Multiplicity="0..1" />
+          <End Role="Appeal" Type="Self.Appeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Premises">
+              <PropertyRef Name="ID_Premises" />
+            </Principal>
+            <Dependent Role="Appeal">
+              <PropertyRef Name="ID_Premises" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appeal_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="1" />
+          <End Role="Appeal" Type="Self.Appeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Principal>
+            <Dependent Role="Appeal">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appeal_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Appeal" Type="Self.Appeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="Appeal">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Premises_Build">
+          <End Role="Build" Type="Self.Build" Multiplicity="1" />
+          <End Role="Premises" Type="Self.Premises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Build">
+              <PropertyRef Name="ID_Build" />
+            </Principal>
+            <Dependent Role="Premises">
+              <PropertyRef Name="ID_Build" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Premises_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Premises" Type="Self.Premises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID_State" />
+            </Principal>
+            <Dependent Role="Premises">
+              <PropertyRef Name="ID_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище stateUventaModelContainer">
+          <EntitySet Name="Appeal" EntityType="Self.Appeal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Build" EntityType="Self.Build" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Premises" EntityType="Self.Premises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceProvider" EntityType="Self.ServiceProvider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Appeal_Premises" Association="Self.FK_Appeal_Premises">
+            <End Role="Premises" EntitySet="Premises" />
+            <End Role="Appeal" EntitySet="Appeal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appeal_ServiceProvider" Association="Self.FK_Appeal_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="Appeal" EntitySet="Appeal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appeal_Status" Association="Self.FK_Appeal_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Appeal" EntitySet="Appeal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Premises_Build" Association="Self.FK_Premises_Build">
+            <End Role="Build" EntitySet="Build" />
+            <End Role="Premises" EntitySet="Premises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Premises_State" Association="Self.FK_Premises_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Premises" EntitySet="Premises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ServiceProvider" Association="Self.FK_User_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="stateUventaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Appeal">
+          <Key>
+            <PropertyRef Name="ID_Appeal" />
+          </Key>
+          <Property Name="ID_Appeal" Type="Int32" Nullable="false" />
+          <Property Name="ID_Premises" Type="Int32" />
+          <Property Name="ID_ServiceProvider" Type="Int32" Nullable="false" />
+          <Property Name="ID_Status" Type="Int32" Nullable="false" />
+          <Property Name="AppealMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Premises" Relationship="Self.FK_Appeal_Premises" FromRole="Appeal" ToRole="Premises" />
+          <NavigationProperty Name="ServiceProvider" Relationship="Self.FK_Appeal_ServiceProvider" FromRole="Appeal" ToRole="ServiceProvider" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Appeal_Status" FromRole="Appeal" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Build">
+          <Key>
+            <PropertyRef Name="ID_Build" />
+          </Key>
+          <Property Name="ID_Build" Type="Int32" Nullable="false" />
+          <Property Name="Floors" Type="Int32" />
+          <Property Name="BuildAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Premises" Relationship="Self.FK_Premises_Build" FromRole="Build" ToRole="Premises" />
+        </EntityType>
+        <EntityType Name="Premises">
+          <Key>
+            <PropertyRef Name="ID_Premises" />
+          </Key>
+          <Property Name="ID_Premises" Type="Int32" Nullable="false" />
+          <Property Name="ID_State" Type="Int32" Nullable="false" />
+          <Property Name="ID_Build" Type="Int32" Nullable="false" />
+          <Property Name="PremisesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PremisesDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PremisesArea" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Appeal" Relationship="Self.FK_Appeal_Premises" FromRole="Premises" ToRole="Appeal" />
+          <NavigationProperty Name="Build" Relationship="Self.FK_Premises_Build" FromRole="Premises" ToRole="Build" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Premises_State" FromRole="Premises" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ServiceProvider">
+          <Key>
+            <PropertyRef Name="ID_ServiceProvider" />
+          </Key>
+          <Property Name="ID_ServiceProvider" Type="Int32" Nullable="false" />
+          <Property Name="ServiceProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="INN" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Appeal" Relationship="Self.FK_Appeal_ServiceProvider" FromRole="ServiceProvider" ToRole="Appeal" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_ServiceProvider" FromRole="ServiceProvider" ToRole="User" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="ID_State" />
+          </Key>
+          <Property Name="ID_State" Type="Int32" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Premises" Relationship="Self.FK_Premises_State" FromRole="State" ToRole="Premises" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Appeal" Relationship="Self.FK_Appeal_Status" FromRole="Status" ToRole="Appeal" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID_User" />
+          </Key>
+          <Property Name="ID_User" Type="Int32" Nullable="false" />
+          <Property Name="ID_Role" Type="Int32" Nullable="false" />
+          <Property Name="ID_ServiceProvider" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="ServiceProvider" Relationship="Self.FK_User_ServiceProvider" FromRole="User" ToRole="ServiceProvider" />
+        </EntityType>
+        <Association Name="FK_Appeal_Premises">
+          <End Role="Premises" Type="Self.Premises" Multiplicity="0..1" />
+          <End Role="Appeal" Type="Self.Appeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Premises">
+              <PropertyRef Name="ID_Premises" />
+            </Principal>
+            <Dependent Role="Appeal">
+              <PropertyRef Name="ID_Premises" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appeal_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="1" />
+          <End Role="Appeal" Type="Self.Appeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Principal>
+            <Dependent Role="Appeal">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appeal_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Appeal" Type="Self.Appeal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="Appeal">
+              <PropertyRef Name="ID_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Premises_Build">
+          <End Role="Build" Type="Self.Build" Multiplicity="1" />
+          <End Role="Premises" Type="Self.Premises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Build">
+              <PropertyRef Name="ID_Build" />
+            </Principal>
+            <Dependent Role="Premises">
+              <PropertyRef Name="ID_Build" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Premises_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Premises" Type="Self.Premises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="ID_State" />
+            </Principal>
+            <Dependent Role="Premises">
+              <PropertyRef Name="ID_State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_ServiceProvider">
+          <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceProvider">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ID_ServiceProvider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="stateUventaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appeal" EntityType="Self.Appeal" />
+          <EntitySet Name="Build" EntityType="Self.Build" />
+          <EntitySet Name="Premises" EntityType="Self.Premises" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="ServiceProvider" EntityType="Self.ServiceProvider" />
+          <EntitySet Name="State" EntityType="Self.State" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Appeal_Premises" Association="Self.FK_Appeal_Premises">
+            <End Role="Premises" EntitySet="Premises" />
+            <End Role="Appeal" EntitySet="Appeal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appeal_ServiceProvider" Association="Self.FK_Appeal_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="Appeal" EntitySet="Appeal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appeal_Status" Association="Self.FK_Appeal_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Appeal" EntitySet="Appeal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Premises_Build" Association="Self.FK_Premises_Build">
+            <End Role="Build" EntitySet="Build" />
+            <End Role="Premises" EntitySet="Premises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Premises_State" Association="Self.FK_Premises_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Premises" EntitySet="Premises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_ServiceProvider" Association="Self.FK_User_ServiceProvider">
+            <End Role="ServiceProvider" EntitySet="ServiceProvider" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище stateUventaModelContainer" CdmEntityContainer="stateUventaEntities">
+          <EntitySetMapping Name="Appeal">
+            <EntityTypeMapping TypeName="stateUventaModel.Appeal">
+              <MappingFragment StoreEntitySet="Appeal">
+                <ScalarProperty Name="ID_Appeal" ColumnName="ID_Appeal" />
+                <ScalarProperty Name="ID_Premises" ColumnName="ID_Premises" />
+                <ScalarProperty Name="ID_ServiceProvider" ColumnName="ID_ServiceProvider" />
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="AppealMessage" ColumnName="AppealMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Build">
+            <EntityTypeMapping TypeName="stateUventaModel.Build">
+              <MappingFragment StoreEntitySet="Build">
+                <ScalarProperty Name="ID_Build" ColumnName="ID_Build" />
+                <ScalarProperty Name="Floors" ColumnName="Floors" />
+                <ScalarProperty Name="BuildAdress" ColumnName="BuildAdress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Premises">
+            <EntityTypeMapping TypeName="stateUventaModel.Premises">
+              <MappingFragment StoreEntitySet="Premises">
+                <ScalarProperty Name="ID_Premises" ColumnName="ID_Premises" />
+                <ScalarProperty Name="ID_State" ColumnName="ID_State" />
+                <ScalarProperty Name="ID_Build" ColumnName="ID_Build" />
+                <ScalarProperty Name="PremisesName" ColumnName="PremisesName" />
+                <ScalarProperty Name="PremisesDescription" ColumnName="PremisesDescription" />
+                <ScalarProperty Name="PremisesArea" ColumnName="PremisesArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="stateUventaModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceProvider">
+            <EntityTypeMapping TypeName="stateUventaModel.ServiceProvider">
+              <MappingFragment StoreEntitySet="ServiceProvider">
+                <ScalarProperty Name="ID_ServiceProvider" ColumnName="ID_ServiceProvider" />
+                <ScalarProperty Name="ServiceProviderName" ColumnName="ServiceProviderName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="State">
+            <EntityTypeMapping TypeName="stateUventaModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="ID_State" ColumnName="ID_State" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="stateUventaModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="stateUventaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="stateUventaModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID_User" ColumnName="ID_User" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="ID_ServiceProvider" ColumnName="ID_ServiceProvider" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

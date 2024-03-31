@@ -1,0 +1,18 @@
+﻿<Page x:Class="uventaStateApp.Resorces.Pages.mainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:uventaStateApp.Resorces.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="475" d:DesignWidth="890"
+      Title="mainMenu" Background="White">
+
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock x:Name="tbHead" Text="Добро пожаловать в систему, " Margin="6" FontSize="18"/>
+        <Button x:Name="btnUser" Content="Пользователи" Width="160" Margin="6" Click="btnUser_Click"/>
+        <Button x:Name="btnProvider" Content="Поставщики услуг" Width="160" Margin="6" Click="btnProvider_Click"/>
+        <Button x:Name="btnBuild" Content="Помещения" Width="160" Margin="6" Click="btnBuild_Click"/>
+        <Button x:Name="btnMessage" Content="Обращения" Width="160" Margin="6" Click="btnMessage_Click"/>
+    </StackPanel>
+</Page>

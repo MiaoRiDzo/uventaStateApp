@@ -1,0 +1,18 @@
+﻿<Page x:Class="uventaStateApp.Resorces.Pages.PremisesPage.BuildPage.BuildEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"       
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:uventaStateApp.Resorces.Pages.PremisesPage.BuildPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="475" d:DesignWidth="890"
+      Title="BuildEditPage">
+    
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock x:Name="tbHeader" Text="Добавление" FontSize="24" FontWeight="Bold"/>
+        <TextBox x:Name="tbAdress" materialDesign:HintAssist.Hint="Адрес здания*" Margin="14" Width="240" FontSize="16" Text="{Binding BuildAdress}"/>
+        <TextBox x:Name="tbFloor" materialDesign:HintAssist.Hint="Количество этажей*" Margin="14" Width="240" FontSize="16" Text="{Binding Floors}"/>
+        <Button x:Name="btnSave" Content="Сохранить" Margin="14" HorizontalAlignment="Right" Click="btnSave_Click"/>
+    </StackPanel>
+</Page>

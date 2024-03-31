@@ -1,0 +1,24 @@
+﻿<Window x:Class="uventaStateApp.Wins.LoginPage"
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:uventaStateApp.Wins"
+        mc:Ignorable="d"
+        Title="LoginPage" MinHeight="480" MinWidth="240" MaxWidth="480" Height="480" Width="480">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Text="Авторизация" FontSize="28"/>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Имя пользователя" Margin="12"/>
+            <TextBox x:Name="tbLogin" Margin="12 0" Text="adm"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Пароль" Margin="12"/>
+            <TextBox x:Name="tbPass" Margin="12 0" Text="adm"/>
+        </StackPanel>
+
+        <Button x:Name="btn_auth" Content="Авторизация" HorizontalAlignment="Right" Margin="12" Click="btn_auth_Click"/>
+    </StackPanel>
+</Window>

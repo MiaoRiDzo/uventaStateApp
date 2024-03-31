@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af60a66f81d742ce9fa696d1525ffad9" Name="Diagram1">
+        <EntityTypeShape EntityType="stateUventaModel.Appeal" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.Build" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.Premises" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.Role" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.ServiceProvider" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.State" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.Status" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="stateUventaModel.User" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="stateUventaModel.FK_Appeal_Premises" ManuallyRouted="false" />
+        <AssociationConnector Association="stateUventaModel.FK_Appeal_ServiceProvider" ManuallyRouted="false" />
+        <AssociationConnector Association="stateUventaModel.FK_Appeal_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="stateUventaModel.FK_Premises_Build" ManuallyRouted="false" />
+        <AssociationConnector Association="stateUventaModel.FK_Premises_State" ManuallyRouted="false" />
+        <AssociationConnector Association="stateUventaModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="stateUventaModel.FK_User_ServiceProvider" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
