@@ -20,9 +20,7 @@ using uventaStateApp.Wins;
 
 namespace uventaStateApp.Resorces.Pages.AppealPages.AppealPage
 {
-    /// <summary>
-    /// Логика взаимодействия для AppealEditPage.xaml
-    /// </summary>
+
     public partial class AppealEditPage : Page
     {
         MainWindow win;

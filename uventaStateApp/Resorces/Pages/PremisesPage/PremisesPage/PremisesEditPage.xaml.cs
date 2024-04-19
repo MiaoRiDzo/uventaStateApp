@@ -18,9 +18,6 @@ using uventaStateApp.Wins;
 
 namespace uventaStateApp.Resorces.Pages.PremisesPage.PremisesPage
 {
-    /// <summary>
-    /// Логика взаимодействия для PremisesEditPage.xaml
-    /// </summary>
     public partial class PremisesEditPage : Page
     {
         MainWindow win;
